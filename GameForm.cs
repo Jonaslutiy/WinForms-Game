@@ -91,7 +91,6 @@ namespace WinFormsGame
                     pictureBox.Size = new Size(squareSize, squareSize);
                     pictureBox.Location = new Point(x * squareSize, y * squareSize);
 
-                    
                     Elements element = map.GetElement(y, x);
 
                     // Перевірка, чи елемент представляє позицію гравця
@@ -100,23 +99,9 @@ namespace WinFormsGame
                         // Встановлення зображення гравця
                         pictureBox.BackgroundImage = Properties.Resources.PlayerImage;
                     }
-                    // Встановлення фонового зображення на основі елемента карти
-                    else if (element is Wall)
-                    {
-                        pictureBox.BackgroundImage = Properties.Resources.WallImage;
-                    }
-                    /*else if (element is Mine)
-                    {
-                        pictureBox.BackgroundImage = Properties.Resources.WallImage;
-                    }*/
-
-                    else if (element is Dollar)
-                    {
-                        pictureBox.BackgroundImage = Properties.Resources.DollarImage;
-                    }
                     else
                     {
-                        pictureBox.BackColor = Color.White;
+                        SetPictureBoxBackground(pictureBox, element);
                     }
 
                     // Налаштування розміру фонового зображення для впису у PictureBox
@@ -140,6 +125,40 @@ namespace WinFormsGame
             mapPictureBox.Refresh();
         }
 
+        private void SetPictureBoxBackground(PictureBox pictureBox, Elements element)
+        {
+            if (element is Wall)
+            {
+                pictureBox.BackgroundImage = Properties.Resources.WallImage;
+            }
+            else if (element is Mine)
+            {
+                pictureBox.BackgroundImage = Properties.Resources.MineImage;
+            }
+            else if (element is Dollar)
+            {
+                pictureBox.BackgroundImage = Properties.Resources.DollarImage;
+            }
+            else
+            {
+                pictureBox.BackgroundImage = null; // Reset the background image
+            }
+        }
+
+        private void UpdatePlayerPosition(int prevX, int prevY, int newX, int newY)
+        {
+            // Get the previous and new PictureBoxes
+            PictureBox prevPictureBox = mapPictureBoxes[prevY, prevX];
+            PictureBox newPictureBox = mapPictureBoxes[newY, newX];
+
+            // Clear the background image and reset the background color of the previous PictureBox
+            SetPictureBoxBackground(prevPictureBox, map.GetElement(prevY, prevX));
+
+            // Set the background image and adjust the layout of the new PictureBox
+            newPictureBox.BackgroundImage = Properties.Resources.PlayerImage;
+            newPictureBox.BackgroundImageLayout = ImageLayout.Stretch;
+            newPictureBox.BackgroundImage = ResizeImage(newPictureBox.BackgroundImage, squareSize - 2, squareSize - 2);
+        }
 
 
         private Image ResizeImage(Image image, int width, int height)
@@ -184,17 +203,18 @@ namespace WinFormsGame
         }
 
 
-        private void UpdatePlayerPosition(int prevX, int prevY, int newX, int newY)
+        /*private void UpdatePlayerPosition(int prevX, int prevY, int newX, int newY)
         {
+            
             // Оновити PictureBox, що відображає попередню позицію гравця
             mapPictureBoxes[prevY, prevX].BackgroundImage = null;
-            mapPictureBoxes[prevY, prevX].BackColor = Color.White;
+           mapPictureBoxes[prevY, prevX].BackColor = Color.White;
 
             // Оновити PictureBox, що відображає поточну позицію гравця
             mapPictureBoxes[newY, newX].BackgroundImage = Properties.Resources.PlayerImage;
             mapPictureBoxes[newY, newX].BackgroundImageLayout = ImageLayout.Stretch;
             mapPictureBoxes[newY, newX].BackgroundImage = ResizeImage(mapPictureBoxes[newY, newX].BackgroundImage, squareSize - 2, squareSize - 2);
-        }
+        }*/
 
         private void MovePlayer(int deltaX, int deltaY)
         {
