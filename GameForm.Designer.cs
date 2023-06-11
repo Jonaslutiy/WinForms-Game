@@ -61,7 +61,7 @@ namespace WinFormsGame
             this.Controls.Add(this.minesCountLabel);
             this.Controls.Add(this.mapPictureBox);
             this.Name = "GameForm";
-            this.Text = "Game map";
+            this.Text = "Mined-Out - Game field";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GameForm_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.mapPictureBox)).EndInit();
             this.ResumeLayout(false);
