@@ -101,7 +101,7 @@ namespace WinFormsGame
                     }
                     else
                     {
-                        SetPictureBoxBackground(pictureBox, element);
+                        SetPictureBoxImage(pictureBox, element);
                     }
 
                     // Налаштування розміру фонового зображення для впису у PictureBox
@@ -125,7 +125,7 @@ namespace WinFormsGame
             mapPictureBox.Refresh();
         }
 
-        private void SetPictureBoxBackground(PictureBox pictureBox, Elements element)
+        private void SetPictureBoxImage(PictureBox pictureBox, Elements element)
         {
             if (element is Wall)
             {
@@ -152,7 +152,7 @@ namespace WinFormsGame
             PictureBox newPictureBox = mapPictureBoxes[newY, newX];
 
             // Clear the background image and reset the background color of the previous PictureBox
-            SetPictureBoxBackground(prevPictureBox, map.GetElement(prevY, prevX));
+            SetPictureBoxImage(prevPictureBox, map.GetElement(prevY, prevX));
 
             // Set the background image and adjust the layout of the new PictureBox
             newPictureBox.BackgroundImage = Properties.Resources.PlayerImage;
