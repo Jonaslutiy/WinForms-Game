@@ -131,10 +131,10 @@ namespace WinFormsGame
             {
                 pictureBox.BackgroundImage = Properties.Resources.WallImage;
             }
-            else if (element is Mine)
+           /* else if (element is Mine)
             {
                 pictureBox.BackgroundImage = Properties.Resources.MineImage;
-            }
+            }*/
             else if (element is Dollar)
             {
                 pictureBox.BackgroundImage = Properties.Resources.DollarImage;
