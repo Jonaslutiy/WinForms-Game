@@ -202,20 +202,6 @@ namespace WinFormsGame
             }
         }
 
-
-        /*private void UpdatePlayerPosition(int prevX, int prevY, int newX, int newY)
-        {
-            
-            // Оновити PictureBox, що відображає попередню позицію гравця
-            mapPictureBoxes[prevY, prevX].BackgroundImage = null;
-           mapPictureBoxes[prevY, prevX].BackColor = Color.White;
-
-            // Оновити PictureBox, що відображає поточну позицію гравця
-            mapPictureBoxes[newY, newX].BackgroundImage = Properties.Resources.PlayerImage;
-            mapPictureBoxes[newY, newX].BackgroundImageLayout = ImageLayout.Stretch;
-            mapPictureBoxes[newY, newX].BackgroundImage = ResizeImage(mapPictureBoxes[newY, newX].BackgroundImage, squareSize - 2, squareSize - 2);
-        }*/
-
         private void MovePlayer(int deltaX, int deltaY)
         {
             // Розрахувати наступну позицію гравця
