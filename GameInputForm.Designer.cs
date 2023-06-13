@@ -98,7 +98,7 @@
             this.createButton.Name = "createButton";
             this.createButton.Size = new System.Drawing.Size(119, 35);
             this.createButton.TabIndex = 7;
-            this.createButton.Text = "Створити";
+            this.createButton.Text = "Create";
             this.createButton.UseVisualStyleBackColor = false;
             this.createButton.Click += new System.EventHandler(this.CreateButton_Click);
             // 

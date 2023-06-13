@@ -131,7 +131,7 @@ namespace WinFormsGame
             {
                 pictureBox.BackgroundImage = Properties.Resources.WallImage;
             }
-           /* else if (element is Mine)
+            /*else if (element is Mine)
             {
                 pictureBox.BackgroundImage = Properties.Resources.MineImage;
             }*/
@@ -232,37 +232,55 @@ namespace WinFormsGame
         {
             if (result == Player.ResultEnum.GameOver)
             {
-
                 MessageBox.Show("Game Over");
-                RestartGame(); // Викликати вікно рестарту гри
+                OfferRestartGame(); // Offer the player to restart the game
             }
             else if (result == Player.ResultEnum.Win)
             {
                 UpdatePlayerPosition(player.PositionX - deltaX, player.PositionY - deltaY, player.PositionX, player.PositionY);
                 MessageBox.Show("You Win!");
-                RestartGame(); // Викликати вікно рестарту гри
+                AskRestartGame(); // Ask the player if they want to start the game again
+            }
+        }
+
+        private void OfferRestartGame()
+        {
+            DialogResult dialogResult = MessageBox.Show("Do you want to try again?", "Restart Game", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                RestartGame();
+            }
+            else
+            {
+                Close(); // End the game
+            }
+        }
+
+        private void AskRestartGame()
+        {
+            DialogResult dialogResult = MessageBox.Show("Do you want to start the game again?", "Restart Game", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                RestartGame();
+            }
+            else
+            {
+                Close(); // End the game
             }
         }
 
         private void RestartGame()
         {
-            DialogResult dialogResult = MessageBox.Show("Do you want to restart the game?", "Restart Game", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
-            {
-                // Закрити поточну форму гри
-                this.Hide();
-                this.Dispose();
+            // Close the current game form
+            this.Hide();
+            this.Dispose();
 
-                // Показати форму введення для початку нової гри
-                GameInputForm inputForm = new GameInputForm();
-                inputForm.ShowDialog();
-                Close(); // Закрити форму введення
-            }
-            else
-            {
-                Close(); // Завершити гру
-            }
+            // Show the input form to start a new game
+            GameInputForm inputForm = new GameInputForm();
+            inputForm.ShowDialog();
+            Close(); // Close the input form
         }
+
 
 
 
