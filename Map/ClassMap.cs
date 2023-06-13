@@ -23,7 +23,7 @@ namespace ConsoleGame
             elements = new Elements[Height + 2, Width + 2];
 
             AddWalls();
-            AddStars(percentFilled);
+            AddMines(percentFilled);
             AddDollarSign(width);
         }
 
@@ -45,7 +45,7 @@ namespace ConsoleGame
             }
         }
 
-        private void AddStars(int percentFilled)
+        private void AddMines(int percentFilled)
         {
             // Обчислити кількість символів '*', яку потрібно розмістити, виходячи з наданого відсотка
             int numStars = (int)((percentFilled / 100.0) * (Height * Width));

@@ -232,7 +232,7 @@ namespace WinFormsGame
         {
             if (result == Player.ResultEnum.GameOver)
             {
-                MessageBox.Show("Game Over");
+                MessageBox.Show("Game over. You have stepped on a mine");
                 OfferRestartGame(); // Offer the player to restart the game
             }
             else if (result == Player.ResultEnum.Win)
